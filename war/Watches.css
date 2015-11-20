@@ -1,0 +1,17 @@
+/** Add css rules here for your application. */
+
+h1 {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+}
+
+td, a, div, .p {
+    font-family: arial, sans-serif
+}
+
+body {
+    background: greenyellow url(http://tula-tricolor.ru/wp-content/uploads/2015/08/358.jpg) no-repeat bottom;
+    text-align: center;
+    font-size: large;
+}
