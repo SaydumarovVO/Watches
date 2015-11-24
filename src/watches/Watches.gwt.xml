@@ -8,4 +8,7 @@
     <!-- Specify the app entry point class.                   -->
     <entry-point class='watches.client.Watches'/>
 
+    <!-- Specify the paths for translatable code                    -->
+    <source path='client'/>
+
 </module>

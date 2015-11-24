@@ -1,11 +1,13 @@
 package watches.client;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.*;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
+import java.util.*;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>
@@ -22,7 +24,13 @@ public class Watches implements EntryPoint {
         button.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 if (label.getText().equals("")) {
-                    label.setText("4:20");
+                    Timer t = new Timer(){
+                        public void run(){
+                            Date d = new Date();
+                            label.setText(String.valueOf(d));
+                        }
+                    };
+                    t.scheduleRepeating(1000);
                 } else {
                     label.setText("");
                 }
