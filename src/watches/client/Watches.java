@@ -18,37 +18,25 @@ public class Watches implements EntryPoint {
         final Label label1 = new Label();
         final Button timerButton = new Button("Секундомер");
         final Label label2 = new Label();
+        final int[] mutable = {1};
+        final Stopwatch stopwatch = new Stopwatch(1);
 
-        Timer t = new Timer() {
+        stopwatch.onTick(new Runnable (){
+            @Override
             public void run() {
-                Date d = new Date();
-                DateTimeFormat fmt = DateTimeFormat.getFormat("HH:mm:ss");
-                label1.setText(String.valueOf(fmt.format(d)));
+                label1.setText(String.valueOf(mutable[0]++));
             }
-        };
-        t.scheduleRepeating(1000);
+        } );
+
+
+
 
         timerButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                if (label2.getText().equals("")) {
-                    Timer t = new Timer() {
-                        final Date date = new Date();
-
-                        public void run() {
-                            Date d = new Date();
-                            DateTimeFormat fmt = DateTimeFormat.getFormat("HH:mm:ss:SS");
-                            long k = d.getTime() - date.getTime() - 3 * 1000 * 60 * 60;
-                            Date n = new Date();
-                            n.setTime(k);
-                            label2.setText(String.valueOf(fmt.format(n)));
-
-                        }
-                    };
-                    t.scheduleRepeating(10);
-                }
-                else{
-                    //label2.fireEvent(event);
-                    label2.setText("");
+                if (stopwatch.isRunning()) {
+                    stopwatch.pause();
+                } else {
+                    stopwatch.go();
                 }
             }
         });
